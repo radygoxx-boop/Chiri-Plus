@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <!-- 背景グラデーション -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fdf0f5"/>
+      <stop offset="100%" style="stop-color:#f0eaff"/>
+    </linearGradient>
+    <!-- メイングラデーション（ピンク→バイオレット） -->
+    <linearGradient id="mainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8829a"/>
+      <stop offset="100%" style="stop-color:#9b72cf"/>
+    </linearGradient>
+    <!-- 地球グラデーション -->
+    <linearGradient id="globeGrad" x1="20%" y1="10%" x2="80%" y2="90%">
+      <stop offset="0%" style="stop-color:#f5c4d0"/>
+      <stop offset="50%" style="stop-color:#cdb8e8"/>
+      <stop offset="100%" style="stop-color:#9b72cf"/>
+    </linearGradient>
+    <!-- 大陸グラデーション -->
+    <linearGradient id="landGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8829a"/>
+      <stop offset="100%" style="stop-color:#b07fc4"/>
+    </linearGradient>
+    <!-- 光沢 -->
+    <radialGradient id="gloss" cx="35%" cy="30%" r="45%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.55)"/>
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0)"/>
+    </radialGradient>
+    <!-- ドロップシャドウ -->
+    <filter id="shadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#9b72cf" flood-opacity="0.30"/>
+    </filter>
+    <!-- 星のぼかし -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- 角丸クリップ -->
+    <clipPath id="roundRect">
+      <rect width="512" height="512" rx="112" ry="112"/>
+    </clipPath>
+  </defs>
+
+  <!-- 角丸背景 -->
+  <rect width="512" height="512" rx="112" ry="112" fill="url(#bgGrad)"/>
+
+  <!-- 背景の装飾オーブ -->
+  <circle cx="400" cy="80" r="130" fill="#e8829a" opacity="0.10"/>
+  <circle cx="80" cy="420" r="110" fill="#9b72cf" opacity="0.10"/>
+  <circle cx="420" cy="370" r="80"  fill="#cdb8e8" opacity="0.08"/>
+
+  <!-- メイン地球 -->
+  <g filter="url(#shadow)" clip-path="url(#roundRect)">
+    <!-- 海洋 -->
+    <circle cx="256" cy="266" r="155" fill="url(#globeGrad)"/>
+    <!-- 経線（縦） -->
+    <ellipse cx="256" cy="266" rx="78"  ry="155" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/>
+    <ellipse cx="256" cy="266" rx="130" ry="155" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/>
+    <!-- 緯線（横） -->
+    <ellipse cx="256" cy="214" rx="145" ry="28" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/>
+    <ellipse cx="256" cy="266" rx="155" ry="18" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="2"/>
+    <ellipse cx="256" cy="318" rx="145" ry="28" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/>
+
+    <!-- 大陸（シンプライズド） -->
+    <!-- ユーラシア -->
+    <path d="M200 195 Q230 180 280 188 Q320 192 340 205 Q358 218 352 235 Q345 248 325 252 Q300 258 275 250 Q248 242 228 250 Q208 258 198 245 Q188 232 200 215 Z"
+          fill="url(#landGrad)" opacity="0.88"/>
+    <!-- アフリカ -->
+    <path d="M235 258 Q248 250 265 255 Q282 260 285 278 Q288 295 280 315 Q272 332 258 338 Q244 342 236 328 Q226 312 228 293 Q230 275 235 258 Z"
+          fill="url(#landGrad)" opacity="0.85"/>
+    <!-- アメリカ大陸（小さめ） -->
+    <path d="M155 215 Q168 208 178 218 Q185 228 180 248 Q176 265 165 272 Q155 278 148 265 Q140 250 143 233 Q146 220 155 215 Z"
+          fill="url(#landGrad)" opacity="0.80"/>
+    <!-- オーストラリア -->
+    <path d="M318 295 Q335 290 345 300 Q352 310 348 322 Q343 333 330 335 Q318 336 312 325 Q306 313 310 302 Q312 296 318 295 Z"
+          fill="url(#landGrad)" opacity="0.78"/>
+    <!-- 日本（小さな点） -->
+    <ellipse cx="340" cy="222" rx="8" ry="14" fill="url(#landGrad)" opacity="0.80" transform="rotate(-20 340 222)"/>
+
+    <!-- 光沢オーバーレイ -->
+    <circle cx="256" cy="266" r="155" fill="url(#gloss)"/>
+    <!-- 地球のアウトライン -->
+    <circle cx="256" cy="266" r="155" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2.5"/>
+  </g>
+
+  <!-- ロゴテキスト「Chiri」 -->
+  <text x="256" y="97" text-anchor="middle"
+        font-family="Georgia, 'DM Serif Display', serif"
+        font-size="58" font-weight="bold" letter-spacing="-1"
+        fill="url(#mainGrad)">Chiri</text>
+
+  <!-- ✦ 記号 -->
+  <text x="334" y="86" text-anchor="middle"
+        font-family="Georgia, serif"
+        font-size="22" fill="#9b72cf" opacity="0.85">✦</text>
+
+  <!-- キラキラ星 ✨ -->
+  <g filter="url(#glow)">
+    <!-- 左上の星 -->
+    <path d="M88 130 L93 118 L98 130 L110 135 L98 140 L93 152 L88 140 L76 135 Z"
+          fill="#e8829a" opacity="0.90"/>
+    <!-- 右下の星（小） -->
+    <path d="M408 372 L411 364 L414 372 L422 375 L414 378 L411 386 L408 378 L400 375 Z"
+          fill="#9b72cf" opacity="0.85"/>
+    <!-- 右上（極小） -->
+    <path d="M392 115 L394 110 L396 115 L401 117 L396 119 L394 124 L392 119 L387 117 Z"
+          fill="#cdb8e8" opacity="0.95"/>
+    <!-- 左下（極小） -->
+    <path d="M118 380 L120 374 L122 380 L128 382 L122 384 L120 390 L118 384 L112 382 Z"
+          fill="#e8829a" opacity="0.80"/>
+  </g>
+
+  <!-- ハート（下部アクセント） -->
+  <g transform="translate(256, 448)" opacity="0.75">
+    <path d="M0,-10 C-6,-18 -18,-18 -18,-8 C-18,0 -8,10 0,18 C8,10 18,0 18,-8 C18,-18 6,-18 0,-10 Z"
+          fill="url(#mainGrad)" transform="scale(0.85)"/>
+  </g>
+
+  <!-- 下部テキスト「地理クイズ」 -->
+  <text x="256" y="490" text-anchor="middle"
+        font-family="'M PLUS Rounded 1c', 'Hiragino Maru Gothic Pro', sans-serif"
+        font-size="22" font-weight="700" letter-spacing="2"
+        fill="#9b72cf" opacity="0.70">地理クイズ</text>
+</svg>
