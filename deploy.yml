@@ -1,0 +1,50 @@
+name: Notion同期 & GitHub Pages デプロイ
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # 毎日 午前3時（JST）に自動同期
+    - cron: '0 18 * * *'
+  workflow_dispatch:  # 手動実行も可能
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+
+      - name: Node.js セットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Notion から問題を取得して JSON 化
+        env:
+          NOTION_TOKEN:  ${{ secrets.NOTION_TOKEN }}
+          NOTION_DB_ID:  ${{ secrets.NOTION_DB_ID }}
+        run: |
+          mkdir -p api
+          node scripts/fetch-notion.js
+
+      - name: GitHub Pages 設定
+        uses: actions/configure-pages@v4
+
+      - name: アーティファクトをアップロード
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: GitHub Pages にデプロイ
+        id: deployment
+        uses: actions/deploy-pages@v4
